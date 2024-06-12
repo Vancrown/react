@@ -5,19 +5,14 @@ import { useRef } from 'react'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselApi, CarouselNext } from "@/components/ui/carousel"
 
-import LineGraph from './test'
+import LineGraph from './price_chart'
 
-// import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
-// import dynamic from "next/dynamic"
+async function getPrice() {
 
-// const LineChart = dynamic(() => import('recharts').then(mod => mod.LineChart), {
-//     ssr: false,
-// })
+    const result = await fetch('https://my-json-server.typicode.com/Vancrown/react/uniqlo').then(x => x.json())
 
-// const Line = dynamic(() => import('recharts').then((mod) => mod.Line), { ssr: false });
-
-
-// const ResponsiveContainer = dynamic(() => import('recharts').then((mod) => mod.ResponsiveContainer), { ssr: false });
+    return result['464430']
+}
 
 
 async function getItem(): Promise<any> {
@@ -50,7 +45,8 @@ export default async function Item() {
     const img_l = getImages(result)
 
 
-
+    const hist_price = await getPrice()
+    console.log(hist_price)
 
 
 
