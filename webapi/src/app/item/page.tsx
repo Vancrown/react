@@ -9,9 +9,8 @@ import LineGraph from './price_chart'
 
 async function getPrice() {
 
-    const result = await fetch('https://my-json-server.typicode.com/Vancrown/react/uniqlo').then(x => x.json())
-
-    return result['464430']
+    const result = await fetch('https://my-json-server.typicode.com/Vancrown/react/db').then(x => x.json())
+    return result['uniqlo']['469054']
 }
 
 
@@ -46,8 +45,6 @@ export default async function Item() {
 
 
     const hist_price = await getPrice()
-    console.log(hist_price)
-
 
 
     return (
@@ -106,7 +103,7 @@ export default async function Item() {
 
                 <div className='h-72 w-200'>
                     this sis div
-                    <LineGraph />
+                    <LineGraph price_l={hist_price} />
                 </div>
 
             </div>
